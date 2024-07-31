@@ -71,7 +71,6 @@ console.log(weatherMap.get(0), weatherMap.get(true), weatherMap.get([1, 2, 3]), 
 
 /*
 	Quick Map creation
-*/
 
 const weatherMap = new Map([
 	["Vyatka", "+22"],
@@ -94,3 +93,25 @@ const weatherMapLarge = new Map(Object.entries(obj));
 
 console.log(Object.entries(obj));
 console.log(weatherMapLarge);
+*/
+
+/*
+	Map iteration
+*/
+const weatherMap = new Map([
+	["vyatka", 22],
+	["izhevsk", 17],
+	["nizhnyNovgorod", 21],
+	["moscow", 19],
+	["saintPetersburg", 19],
+	["samara", 26],
+	["volgograd", 27],
+]);
+
+for(const [key, value] of weatherMap) {
+	console.log(key, value);
+}
+
+console.log([...weatherMap]); // array
+console.log([...weatherMap.keys()]);
+console.log([...weatherMap.values()]);
