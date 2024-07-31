@@ -97,7 +97,6 @@ console.log(weatherMapLarge);
 
 /*
 	Map iteration
-*/
 const weatherMap = new Map([
 	["vyatka", 22],
 	["izhevsk", 17],
@@ -115,3 +114,29 @@ for(const [key, value] of weatherMap) {
 console.log([...weatherMap]); // array
 console.log([...weatherMap.keys()]);
 console.log([...weatherMap.values()]);
+*/
+
+/*
+	Exercise - swap keys and values
+*/
+let weatherMap = new Map([
+	["vyatka", 22],
+	["izhevsk", 17],
+	["nizhnyNovgorod", 21],
+	["moscow", 19],
+	["saintPetersburg", 19],
+	["samara", 26],
+	["volgograd", 27],
+]);
+
+const weatherMapInverted = new Map();
+for (const [key, value] of weatherMap) {
+	weatherMapInverted.set(value, key);
+}
+
+console.log(weatherMapInverted);
+
+//or
+
+weatherMap = new Map([...weatherMap].map(el => el.reverse()));
+console.log(weatherMap);
