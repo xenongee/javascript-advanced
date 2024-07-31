@@ -118,7 +118,6 @@ console.log([...weatherMap.values()]);
 
 /*
 	Exercise - swap keys and values
-*/
 let weatherMap = new Map([
 	["vyatka", 22],
 	["izhevsk", 17],
@@ -140,3 +139,43 @@ console.log(weatherMapInverted);
 
 weatherMap = new Map([...weatherMap].map(el => el.reverse()));
 console.log(weatherMap);
+*/
+
+/*
+	WeakMap
+*/
+
+const newMap = new WeakMap();
+
+let a = { a: "one" };
+let b = { b: "two" };
+
+// Keys only objects: unlike Map, where a key can be any data type, WeakMap accepts only objects as keys.
+// Ключи только объекты: в отличие от Map, где ключом может быть любой тип данных, WeakMap принимает только объекты в качестве ключей.
+newMap.set(a, "object 1");
+newMap.set(b, "object 2");
+
+console.log(newMap.get(a), newMap);
+console.log(newMap.has(b));
+// console.log(newMap.delete(a));
+
+console.log(newMap);
+
+// Auto-cleaning: the key-value is automatically removed from WeakMap as soon as the key-object is no longer referenced (garbage collection).
+// Автоочистка: ключ-значение автоматически удаляется из WeakMap, как только на объект-ключ нет больше ссылок (сборка мусора).
+a = null;
+// console.log(newMap); // 'a' contained in WeakMap
+setTimeout(() => console.log(newMap), 1000); // 'a' not contained in WeakMap
+
+let cache = new WeakMap();
+
+function getValue(object) {
+	if (!cache.has(object)) {
+		let something = Math.random();
+		cache.set(object, something);
+	}
+	return cache.get(object);
+}
+
+console.log(getValue(b));
+console.log(getValue(b));
