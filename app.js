@@ -143,7 +143,6 @@ console.log(weatherMap);
 
 /*
 	WeakMap
-*/
 
 const newMap = new WeakMap();
 
@@ -179,3 +178,25 @@ function getValue(object) {
 
 console.log(getValue(b));
 console.log(getValue(b));
+*/
+
+/* 
+	WeakSet
+*/
+
+const newSet = new WeakSet();
+
+let a = { a: "one" };
+let b = { b: "two" };
+
+newSet.add(a);
+newSet.add(b);
+
+console.log(newSet.has(a));
+console.log(newSet.has(b));
+
+console.log(newSet);
+
+a = null;
+// console.log(newSet);
+setTimeout(() => console.log(newSet), 1000);
