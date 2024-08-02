@@ -2,7 +2,6 @@
 
 /*
     Conversion and verification of numbers
-*/
 
 console.log(10 === 10.0); // true
 
@@ -47,3 +46,55 @@ console.log(
 	Number.isInteger(10), // true
 	Number.isInteger(10.5), // false
 );
+*/
+
+/*
+	Math library
+*/
+
+console.log(
+	Math.E, 
+	Math.PI, 
+	Math.LN2, 
+	Math.LN10, 
+	Math.LOG2E, 
+	Math.LOG10E,
+	Math.SQRT1_2,
+	Math.SQRT2,
+);
+
+console.log(
+	Math.pow(3, 2),  // 9
+	3 ** 2,  // 9
+);
+console.log(
+	Math.pow(3, 3), // 27
+	3 ** 3, // 27
+);
+
+console.log(
+	Math.sqrt(9), // 3
+	9 ** (1/2) // 3
+);
+console.log(
+	Math.cbrt(27), // 3
+	27 ** (1/3) // 3
+);
+
+console.log(
+	// returns 1 for positive numbers and -1 for negative numbers
+	Math.sign(-100), // -1
+	Math.sign(55) // 1
+);
+console.log(
+	// returns number to its absolute value (modulus)
+	Math.abs(-100), // 100
+	Math.abs(-55) // 55
+);
+
+console.log(
+	Math.min(1, 2, 3), // 1
+	Math.max(1, 2, 3), // 3
+);
+
+console.log(Math.random()); // random number [0, 1]
