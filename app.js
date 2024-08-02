@@ -2,7 +2,6 @@
 
 /*
     Conversion and verification of numbers
-*/
 
 console.log(10 === 10.0); // true
 
@@ -47,3 +46,38 @@ console.log(
 	Number.isInteger(10), // true
 	Number.isInteger(10.5), // false
 );
+*/
+
+/*
+	Math library
+*/
+
+console.log(
+	Math.E, 
+	Math.PI, 
+	Math.LN2, 
+	Math.LN10, 
+	Math.LOG2E, 
+	Math.LOG10E,
+	Math.SQRT1_2,
+	Math.SQRT2,
+);
+
+console.log(
+	Math.pow(3, 2),  // 9
+	3 ** 2,  // 9
+);
+console.log(
+	Math.pow(3, 3), // 27
+	3 ** 3, // 27
+);
+
+console.log(
+	Math.sqrt(9), // 3
+	9 ** (1/2) // 3
+);
+console.log(
+	Math.cbrt(27), // 3
+	27 ** (1/3) // 3
+);
+
