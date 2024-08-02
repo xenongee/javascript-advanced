@@ -1,202 +1,49 @@
 "use strict";
 
 /*
-    Sets
+    Conversion and verification of numbers
+*/
 
-const arrSomething = ['a', 'b', 'c', 'b', 'd'];
-const setSomething = new Set(arrSomething);
+console.log(10 === 10.0); // true
 
-console.log(arrSomething);
+console.log(0.1 + 0.2 === 0.3); // false
+console.log(0.1 + 0.2); // 0.30000000000000004
+
+console.log(0.2 + 0.2 === 0.4); // true
+console.log(0.2 + 0.2); // 0.4
+
 console.log(
-	setSomething,
-	setSomething.size,
-	setSomething.has('e'),
-	setSomething.has('d'),
+	Number("10"), // 10
+	+"10" // 10 (implicit conversion)
+); // 10, 10
+
+console.log(
+	Number.parseInt("10"), // 10
+	Number.parseInt("10", 10), // 10
+	Number.parseInt("180 degrees"), // 180
+	Number.parseInt("degrees 180"), // NaN
+	Number.parseInt("0x12", 16), // 18
+	Number.parseInt("624", 8), // 404
+	Number.parseInt("111110110", 2), // 502
 );
-setSomething.add('e');
-setSomething.add('e'); // no effect
 
-for (const item of setSomething) {
-	console.log(item);
-}
+console.log(
+	// 0x - hex (16), 0o - octal (8), 0b - binary (2)
+	0x12, // 18
+	0o624, // 404
+	0b111110110, // 502
+);
 
-console.log(setSomething, setSomething.size, setSomething.has('e'));
-setSomething.delete('c');
-console.log(setSomething, setSomething.size, setSomething.has('c'));
+console.log(Number.parseInt("36.6")); // 36
+console.log(Number.parseFloat("36.6")); // 36.6
 
-const set2arr = [...setSomething];
-console.log(set2arr);
-
-const setObj = new Set([
-    { a: 1 },
-    { b: 2 },
-    { c: 3 },
-]);
-const setString = new Set('abcdf');
-console.log(setObj, setString);
-*/
-
-/*
-    Maps
-
-const weatherMap = new Map();
-
-// weatherMap.set('Vyatka', '+22');
-// weatherMap.set('Izhevsk', '+17');
-weatherMap
-	.set("Vyatka", "+22")
-	.set("Izhevsk", "+17")
-	.set("Nizhny Novgorod", "+21");
-
-console.log(weatherMap);
-
-console.log(weatherMap.get("Vyatka"));
-console.log(weatherMap.get("Moscow"));
-
-console.log(weatherMap.has("Moscow"));
-console.log(weatherMap.has("Izhevsk"));
-
-weatherMap.delete("Nizhny Novgorod");
-console.log(weatherMap);
-
-weatherMap.clear();
-console.log(weatherMap);
-
-const obj = { a: 1 };
-weatherMap.set(0, 1).set(true, 'true').set(false, 'false').set([1, 2, 3], 'array').set(obj, 'object');
-console.log(weatherMap, weatherMap.size);
-
-console.log(weatherMap.get(0), weatherMap.get(true), weatherMap.get([1, 2, 3]), weatherMap.get(obj));
-*/
-
-/*
-	Quick Map creation
-
-const weatherMap = new Map([
-	["Vyatka", "+22"],
-	["Izhevsk", "+17"],
-	["Nizhny Novgorod", "+21"],
-]);
-
-console.log(weatherMap);
-
-const obj = {
-	vyatka: 22,
-	izhevsk: 17,
-	nizhnyNovgorod: 21,
-	moscow: 19,
-	saintPetersburg: 19,
-	samara: 26,
-	volgograd: 27
-};
-const weatherMapLarge = new Map(Object.entries(obj));
-
-console.log(Object.entries(obj));
-console.log(weatherMapLarge);
-*/
-
-/*
-	Map iteration
-const weatherMap = new Map([
-	["vyatka", 22],
-	["izhevsk", 17],
-	["nizhnyNovgorod", 21],
-	["moscow", 19],
-	["saintPetersburg", 19],
-	["samara", 26],
-	["volgograd", 27],
-]);
-
-for(const [key, value] of weatherMap) {
-	console.log(key, value);
-}
-
-console.log([...weatherMap]); // array
-console.log([...weatherMap.keys()]);
-console.log([...weatherMap.values()]);
-*/
-
-/*
-	Exercise - swap keys and values
-let weatherMap = new Map([
-	["vyatka", 22],
-	["izhevsk", 17],
-	["nizhnyNovgorod", 21],
-	["moscow", 19],
-	["saintPetersburg", 19],
-	["samara", 26],
-	["volgograd", 27],
-]);
-
-const weatherMapInverted = new Map();
-for (const [key, value] of weatherMap) {
-	weatherMapInverted.set(value, key);
-}
-
-console.log(weatherMapInverted);
-
-//or
-
-weatherMap = new Map([...weatherMap].map(el => el.reverse()));
-console.log(weatherMap);
-*/
-
-/*
-	WeakMap
-
-const newMap = new WeakMap();
-
-let a = { a: "one" };
-let b = { b: "two" };
-
-// Keys only objects: unlike Map, where a key can be any data type, WeakMap accepts only objects as keys.
-// Ключи только объекты: в отличие от Map, где ключом может быть любой тип данных, WeakMap принимает только объекты в качестве ключей.
-newMap.set(a, "object 1");
-newMap.set(b, "object 2");
-
-console.log(newMap.get(a), newMap);
-console.log(newMap.has(b));
-// console.log(newMap.delete(a));
-
-console.log(newMap);
-
-// Auto-cleaning: the key-value is automatically removed from WeakMap as soon as the key-object is no longer referenced (garbage collection).
-// Автоочистка: ключ-значение автоматически удаляется из WeakMap, как только на объект-ключ нет больше ссылок (сборка мусора).
-a = null;
-// console.log(newMap); // 'a' contained in WeakMap
-setTimeout(() => console.log(newMap), 1000); // 'a' not contained in WeakMap
-
-let cache = new WeakMap();
-
-function getValue(object) {
-	if (!cache.has(object)) {
-		let something = Math.random();
-		cache.set(object, something);
-	}
-	return cache.get(object);
-}
-
-console.log(getValue(b));
-console.log(getValue(b));
-*/
-
-/* 
-	WeakSet
-*/
-
-const newSet = new WeakSet();
-
-let a = { a: "one" };
-let b = { b: "two" };
-
-newSet.add(a);
-newSet.add(b);
-
-console.log(newSet.has(a));
-console.log(newSet.has(b));
-
-console.log(newSet);
-
-a = null;
-// console.log(newSet);
-setTimeout(() => console.log(newSet), 1000);
+console.log(
+	Number.isNaN(Number("12abc")), // true
+	10 / 0,  // Infinity
+	Number.isNaN(10 / 0), // false
+	Number.isFinite(10 / 0), // false
+	Number.isFinite(Number("12abc")), // false
+	Number.isFinite(10), // true
+	Number.isInteger(10), // true
+	Number.isInteger(10.5), // false
+);
