@@ -50,7 +50,6 @@ console.log(
 
 /*
 	Math library
-*/
 
 console.log(
 	Math.E, 
@@ -98,3 +97,42 @@ console.log(
 );
 
 console.log(Math.random()); // random number [0, 1]
+*/
+
+/*
+	Round
+*/
+
+console.log(
+	Math.round(0.9), // 1
+	Math.round(1.6), // 2
+	Math.round(1.933333333), // 2
+	Math.trunc(-2.75), // -2
+);
+
+console.log(
+	Math.ceil(1.1), // 2
+	Math.ceil(0.75), // 1
+	Math.ceil(2.0001), // 3
+	Math.trunc(-2.75), // -2
+);
+
+console.log(
+	Math.floor(1.1), // 1
+	Math.floor(0.75), // 0
+	Math.floor(2.0001), // 2
+	Math.floor(-2.75), // -3
+);
+
+console.log(
+	// just cut the decimal part
+	Math.trunc(1.1), // 1
+	Math.trunc(0.75), // 0
+	Math.trunc(2.0001), // 2
+	Math.trunc(-2.75), // -2
+);
+
+console.log(
+	(1.4999).toFixed(1), // 1.5
+	Number(1.4999).toFixed(2), // 1.50
+);
