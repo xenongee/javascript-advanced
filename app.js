@@ -136,3 +136,22 @@ console.log(
 	(1.4999).toFixed(1), // 1.5
 	Number(1.4999).toFixed(2), // 1.50
 );
+
+/*
+	Exercise - Random Number Function
+	Упражнение - Функция случайного числа
+
+	Imitation of rolling a dice, for example, D20 (dice from 1 to 20) for board games like "Dungeons and Dragons".
+	Имитация броска игрального кубика, например, D20 (кубик от 1 до 20) для настольных игр типа "Dungeons and Dragons".
+*/
+
+function rollDice(min, max) {
+	let rolling = confirm("Roll dice?");
+	
+	if (rolling) {
+		let dice = Math.floor(Math.random() * (max - min + 1) + min);
+		confirm(`Your dice roll is: ${dice}.\nWould you like to roll again?`) && rollDice(1, 20);
+	}
+}
+
+rollDice(1, 20);
