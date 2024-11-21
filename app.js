@@ -161,7 +161,6 @@ rollDice(1, 20);
 /* 
 	Division remainder operator
 	Оператор остатка от деления
-*/
 
 console.log(15 / 2); // 7.5
 console.log(15 % 2); // 1
@@ -174,4 +173,25 @@ console.log(isEven(11)); // false
 const isOdd = number => number % 2 !== 0;
 console.log(isOdd(10)); // false
 console.log(isOdd(11)); // true
+*/
+
+/*
+	Number divider
+	Разделитель чисел
+*/
+
+const bigNum = 69704223321;
+const bigNumAlt = 69_704_223_321;
+
+const smalNum = 25_50; 
+const smalNumAlt = 25.50; 
+const smalNumAlt2 = 2_5.5_0;
+
+console.log(bigNum); // 69704223321
+console.log(bigNumAlt); // 69704223321
+
+console.log(smalNum); // 2550
+console.log(Number(smalNumAlt)); // 25.5
+console.log(Number.parseInt(smalNumAlt2)); // 25
+console.log(Number.parseFloat(smalNumAlt2)); // 25.5
 
