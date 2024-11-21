@@ -178,7 +178,6 @@ console.log(isOdd(11)); // true
 /*
 	Number divider
 	Разделитель чисел
-*/
 
 const bigNum = 69704223321;
 const bigNumAlt = 69_704_223_321;
@@ -194,4 +193,33 @@ console.log(smalNum); // 2550
 console.log(Number(smalNumAlt)); // 25.5
 console.log(Number.parseInt(smalNumAlt2)); // 25
 console.log(Number.parseFloat(smalNumAlt2)); // 25.5
+*/
+
+/*
+	BigInt
+*/
+
+const maxNum = 2**53-1;
+console.log(Number.MAX_SAFE_INTEGER); // 9007199254740991
+console.log(maxNum, maxNum + 1, maxNum + 2, maxNum + 3, maxNum + 4);
+console.log(Number.MIN_SAFE_INTEGER); // -9007199254740991
+
+// biome-ignore lint/correctness/noPrecisionLoss: <explanation>
+console.log(123456789876543210123456789);
+console.log(123456789876543210123456789n);
+console.log(BigInt('123456789876543210123456789'));
+
+console.log(10n + 20n);
+console.log(10n * 20n);
+console.log(10n / 20n); // 0n
+// console.log(10n + 20); // error: cannot mix BigInt and other types
+console.log(10n + BigInt(20));
+console.log(123456789876543210123456789n * 123456789876543210123456789n);
+
+console.log(10n > 20); // false
+// biome-ignore lint/suspicious/noDoubleEquals: <explanation>
+console.log(10n == 10); // true
+console.log(10n === 10); // false
+
+
 
