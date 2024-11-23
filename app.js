@@ -1,7 +1,7 @@
 "use strict";
 
 /*
-    Conversion and verification of numbers
+	Conversion and verification of numbers
 
 console.log(10 === 10.0); // true
 
@@ -197,7 +197,6 @@ console.log(Number.parseFloat(smalNumAlt2)); // 25.5
 
 /*
 	BigInt
-*/
 
 const maxNum = 2**53-1;
 console.log(Number.MAX_SAFE_INTEGER); // 9007199254740991
@@ -220,6 +219,36 @@ console.log(10n > 20); // false
 // biome-ignore lint/suspicious/noDoubleEquals: <explanation>
 console.log(10n == 10); // true
 console.log(10n === 10); // false
+*/
 
+/*
+	Internationalization API (Intl)
+	Интернационализация чисел
+*/
 
+const num = 250989.70;
+const optRub = {
+	style: 'currency',
+	currency: 'RUB',
+}
+const optUsd = {
+	style: 'currency',
+	currency: 'USD',
+}
+const optDcml = {
+	style: 'decimal'
+}
+const optPerc = {
+	style: 'percent'
+}
+const optUnit = {
+	style: 'unit',
+	unit: 'celsius'
+}
 
+console.log(num);
+console.log(new Intl.NumberFormat('ru-RU', optRub).format(num)); // 250 989,70 ₽
+console.log(new Intl.NumberFormat('en-US', optUsd).format(num)); // $250,989.70
+console.log(new Intl.NumberFormat('ru-RU', optDcml).format(num)); // 250 989,7
+console.log(new Intl.NumberFormat('ru-RU', optPerc).format(0.05)); // 5%
+console.log(new Intl.NumberFormat('ru-RU', optUnit).format(36.6)); // 36.6 °C
