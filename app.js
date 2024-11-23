@@ -224,7 +224,6 @@ console.log(10n === 10); // false
 /*
 	Internationalization API (Intl)
 	Интернационализация чисел
-*/
 
 const num = 250989.70;
 const optRub = {
@@ -252,3 +251,47 @@ console.log(new Intl.NumberFormat('en-US', optUsd).format(num)); // $250,989.70
 console.log(new Intl.NumberFormat('ru-RU', optDcml).format(num)); // 250 989,7
 console.log(new Intl.NumberFormat('ru-RU', optPerc).format(0.05)); // 5%
 console.log(new Intl.NumberFormat('ru-RU', optUnit).format(36.6)); // 36.6 °C
+*/
+
+/*
+	Exercise - Currency Converter
+	Упражнение - Конвертер валют
+*/
+
+function currencyConvert(amount, from, to) {
+    let value;
+    const currencyBaseToUSD = [
+        { name: 'USD', multiplier: 1 },
+        { name: 'RUB', multiplier: 102.5 },
+        { name: 'EUR', multiplier: 0.9 },
+        { name: 'RSD', multiplier: 111.7 },
+        { name: 'TRY', multiplier: 34.7 },
+        { name: 'JPY', multiplier: 154.5 },
+        { name: 'CNY', multiplier: 7.2 }
+    ]
+
+    const currencyFrom = currencyBaseToUSD.find(item => item.name === from);
+    const currencyTo = currencyBaseToUSD.find(item => item.name === to);
+
+    if (!currencyFrom || !currencyTo) {
+        return console.log('Currency not found');
+    }
+
+    value = amount / currencyFrom.multiplier * currencyTo.multiplier;
+
+    value = new Intl.NumberFormat('en-US', { style: 'currency', currency: to }).format(value);
+
+    return console.log(`${from} to ${value}`);
+}
+
+currencyConvert(1000.50, 'USD', 'RUB');
+currencyConvert(1000.50, 'RUB', 'USD');
+currencyConvert(1000.50, 'RUB', 'EUR');
+currencyConvert(1000.50, 'KZT', 'RUB');
+currencyConvert(1000.50, 'RUB', 'RSD');
+currencyConvert(1000.50, 'CNY', 'RSD');
+currencyConvert(1000.50, 'EUR', 'USD');
+currencyConvert(1000.50, 'JPY', 'RSD');
+currencyConvert(1000.50, 'USD', 'TRY');
+currencyConvert(1000.50, 'AED', 'RSD');
+
