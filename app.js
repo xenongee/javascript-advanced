@@ -162,7 +162,6 @@ setTimeout(() => {
 /*
 	Working with intervals
 	Работа с интервалами
-*/
 
 // setInterval works like setTimeout, but repeats itself
 
@@ -175,3 +174,34 @@ const timer = setTimeout(() => {
 }, 5000);
 
 console.log(interval, timer);
+*/
+
+/*
+	Exercises - Timer
+	Упражнение - Таймер
+*/
+
+// timer gets time in ms
+function timer(timerInMs) {
+	let timeLeft = +timerInMs;
+	const formatedTimeOpt = {
+		hour: "2-digit",
+		minute: "numeric",
+		second: "numeric",
+		timeZone: "UTC"
+	};
+	const formatedTime = tLeft => {
+		return new Intl.DateTimeFormat(navigator.language, formatedTimeOpt).format(tLeft)
+	}
+	console.log(`Timer starts for: ${formatedTime(timeLeft)}`);
+	const timerInterval = setInterval(() => {
+		timeLeft -= 1000;
+		console.log(formatedTime(timeLeft));
+	}, 1000);
+	setTimeout(() => {
+		clearInterval(timerInterval);
+		console.log("Timer stopped.");
+	}, timerInMs);
+}
+
+timer(5000); // 5 secs
