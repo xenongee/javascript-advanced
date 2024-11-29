@@ -150,10 +150,28 @@ clearTimeout(helloTimer);
 /*
 	Timer precision
 	Точность таймеров
-*/
+
 
 console.log(performance.now());
 
 setTimeout(() => {
 	console.log(performance.now());
 }, 1000);
+*/
+
+/*
+	Working with intervals
+	Работа с интервалами
+*/
+
+// setInterval works like setTimeout, but repeats itself
+
+const interval = setInterval(() => {
+	console.log(new Date());
+}, 1000)
+
+const timer = setTimeout(() => {
+	clearInterval(interval);
+}, 5000);
+
+console.log(interval, timer);
