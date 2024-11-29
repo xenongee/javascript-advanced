@@ -100,7 +100,7 @@ console.log(isBirthday(user2));
 /*
 	Internationalization API (Dates)
 	Интернационализация дат
-*/
+
 
 const date = new Date();
 
@@ -127,4 +127,21 @@ console.log(new Intl.DateTimeFormat('ru-RU', opt).format(date));
 console.log(navigator.language); 
 
 console.log(new Intl.DateTimeFormat(navigator.language, opt2).format(date));
+*/
 
+/*
+	Create timer
+	Создание таймера
+*/
+
+const helloTimer = setTimeout(() => {
+	console.log('Hello');
+}, 1500);
+
+const msgs = ['Hello', 'World', 'Sheeesh'];
+
+setTimeout((msg, msgadd) => {
+	console.log(msg, msgadd);
+}, 2000, ...msgs);
+
+clearTimeout(helloTimer);
