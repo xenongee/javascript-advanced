@@ -132,7 +132,7 @@ console.log(new Intl.DateTimeFormat(navigator.language, opt2).format(date));
 /*
 	Create timer
 	Создание таймера
-*/
+
 
 const helloTimer = setTimeout(() => {
 	console.log('Hello');
@@ -145,3 +145,15 @@ setTimeout((msg, msgadd) => {
 }, 2000, ...msgs);
 
 clearTimeout(helloTimer);
+*/
+
+/*
+	Timer precision
+	Точность таймеров
+*/
+
+console.log(performance.now());
+
+setTimeout(() => {
+	console.log(performance.now());
+}, 1000);
