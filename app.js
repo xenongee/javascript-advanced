@@ -71,7 +71,7 @@ console.log(+dateFirst === +dateSecond); // plus operator is a shortcut for Numb
 /*
 	Exercises - Birthday Check
 	Упражнение - Проверка на день рождения
-*/
+
 
 const user = {
 	name: 'John',
@@ -95,3 +95,36 @@ function isBirthday(user) {
 
 console.log(isBirthday(user));
 console.log(isBirthday(user2));
+*/
+
+/*
+	Internationalization API (Dates)
+	Интернационализация дат
+*/
+
+const date = new Date();
+
+console.log(date);
+console.log(new Intl.DateTimeFormat('ru-RU').format(date));
+
+const opt = {
+	hour: 'numeric',
+	minute: 'numeric',
+	hour12: true,
+}
+
+const opt2 = {
+	hour: 'numeric',
+	minute: 'numeric',
+	month: 'long',
+	weekday: 'short',
+	year: '2-digit',
+	day: 'numeric',
+}
+
+console.log(new Intl.DateTimeFormat('ru-RU', opt).format(date));
+
+console.log(navigator.language); 
+
+console.log(new Intl.DateTimeFormat(navigator.language, opt2).format(date));
+
