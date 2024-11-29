@@ -28,7 +28,7 @@ console.log(new Date(now.setFullYear(2033))); // change year
 /*
 	Operations with dates
 	Операции с датами
-*/
+
 
 const date1 = new Date(2024, 10, 30);
 const date2 = new Date(2024, 11, 25);
@@ -47,5 +47,51 @@ console.log(+date1);
 console.log(date.setTime(date1.getTime() + 1000 * 60 * 60 * 24)); // add 1 day
 console.log(new Date(date2.setDate(date.getDate() + 1))); // add 1 day
 
-	
+*/	
 
+/*
+	Comparing dates
+	Сравнение дат
+
+const dateFirst = new Date(2024, 10, 30);
+const dateSecond = new Date(2024, 11, 25);
+
+console.log(dateFirst < dateSecond);
+// biome-ignore lint/suspicious/noDoubleEquals: <explanation>
+console.log(dateFirst == dateSecond);
+console.log(dateFirst === dateSecond);
+
+// biome-ignore lint/suspicious/noDoubleEquals: <explanation>
+console.log(dateFirst.getTime() == dateSecond.getTime());
+console.log(dateFirst.getTime() === dateSecond.getTime());
+console.log(Number(dateFirst) === Number(dateSecond));
+console.log(+dateFirst === +dateSecond); // plus operator is a shortcut for Number()
+*/
+
+/*
+	Exercises - Birthday Check
+	Упражнение - Проверка на день рождения
+*/
+
+const user = {
+	name: 'John',
+	birthday: '1995/06/12',
+};
+
+const user2 = {
+	name: 'Mike',
+	birthday: '2024/11/28',
+};
+
+function isBirthday(user) {
+	const today = new Date();
+	const birthday = new Date(user.birthday);
+
+	const checkMonth = today.getMonth() === birthday.getMonth();
+	const checkDay = today.getDay() === birthday.getDay();
+
+	return checkMonth && checkDay;
+}
+
+console.log(isBirthday(user));
+console.log(isBirthday(user2));
