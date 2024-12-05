@@ -27,7 +27,6 @@ console.log(UserNew instanceof User);
 
 /*
     Prototype
-*/
 
 const journal = function(title, employee) {
 	this.title = title;
@@ -70,3 +69,99 @@ Array.prototype.firstElem = () => {
 };
 
 console.log([1,2,3].firstElem());
+
+*/
+
+/*
+    Exercise - Shopping Cart
+*/
+
+const products = [
+    { id: 1, name: "Egg" },
+    { id: 2, name: "Milk" },
+    { id: 3, name: "Potatoes" }
+];
+
+const productByName = (name) => {
+    const product = products.find(item => item.name === name);
+    if (product === undefined) {
+        return undefined;
+    }
+    return product;
+};
+
+const Cart = function() {
+    this.productsInCart = [];
+};
+
+Cart.prototype.addProduct = function(product) {
+    if (product === undefined) {
+        console.log('🔴 product is undefined') ;
+        return;
+    }
+
+    if (typeof product === "string") {
+        product = productByName(product);
+    }
+
+    if (this.productsInCart.findIndex(item => item.id === product.id) !== -1) {
+        console.log(`🔴 product '${product.name}' already added`);
+        return;
+    }
+    product.count = 1;
+    this.productsInCart.push(product);
+    console.log(`🟢 product '${product.name}' added`);
+}
+
+Cart.prototype.changeCount = function(product, action) {
+    if (product === undefined) {
+        console.log('🔴 product is undefined') ;
+        return;
+    }
+
+    if (typeof product === "string") {
+        product = productByName(product);
+    }
+
+    const index = this.productsInCart.findIndex(item => item.id === product.id);
+    if (index === -1) {
+        console.log(`🔴 product '${product.name}' not found`);
+        return;
+    }
+
+    switch (action) {
+        case "increase":
+            this.productsInCart[index].count++;
+            console.log(`🟢 product '${product.name}' count increased (count: ${this.productsInCart[index].count})`);
+
+            break;
+            case "decrease":
+                this.productsInCart[index].count--;
+                console.log(`🟢 product '${product.name}' count decreased (count: ${this.productsInCart[index].count})`);
+                if (this.productsInCart[index].count === 0) {
+                    this.productsInCart.splice(index, 1);
+                }
+            break;
+
+        default:
+            console.log(`🔴 unknown action '${action}', need 'increase' or 'decrease'`);
+            break;
+    }
+}
+
+const myCart = new Cart();
+
+myCart.addProduct(products[4]);
+myCart.addProduct("Egg");
+myCart.addProduct("Egg");
+myCart.addProduct(products[2]);
+
+myCart.changeCount(products[0]);
+myCart.changeCount("Egg", "increase");
+myCart.changeCount(products[0], "decrease");
+myCart.addProduct(products[1]);
+myCart.changeCount(products[1], "decrease");
+myCart.addProduct(products[1]);
+myCart.changeCount(products[4], "decrease");
+
+console.log(myCart);
