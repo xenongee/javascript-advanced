@@ -74,7 +74,6 @@ console.log([1,2,3].firstElem());
 
 /*
     Exercise - Shopping Cart
-*/
 
 const products = [
     { id: 1, name: "Egg" },
@@ -104,7 +103,8 @@ Cart.prototype.addProduct = function(product) {
         product = productByName(product);
     }
 
-    if (this.productsInCart.findIndex(item => item.id === product.id) !== -1) {
+    const index = this.productsInCart.findIndex(item => item.id === product.id);
+    if (index !== -1) {
         console.log(`🔴 product '${product.name}' already added`);
         return;
     }
@@ -165,3 +165,32 @@ myCart.addProduct(products[1]);
 myCart.changeCount(products[4], "decrease");
 
 console.log(myCart);
+
+*/
+
+/*
+    Classes
+*/
+
+class JournalClass {
+    // this code always works in strict mode
+    readed = false;
+    createdAt = new Intl.DateTimeFormat('ru-RU').format(new Date());
+    constructor(title, employee) {
+        this.title = title;
+        this.employee = employee;
+    }
+
+    read() {
+        this.readed = true;
+    }
+}
+
+const securityJournalClass = new JournalClass('Security', 'John Doe');
+const machineElementsJournalClass = new JournalClass('Machine Elements', 'Vasya Pupkin');
+
+console.log(securityJournalClass.title, securityJournalClass);
+machineElementsJournalClass.read();
+console.log(machineElementsJournalClass.title, machineElementsJournalClass);
+console.log(machineElementsJournalClass.__proto__);
+console.log(machineElementsJournalClass instanceof JournalClass);
