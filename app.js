@@ -294,7 +294,6 @@ console.log(SomeClass.var1);
 
 /*
     Private methods and properties
-*/
 
 class Car {
     #vin = '12345432109876';
@@ -320,6 +319,59 @@ const automobile = new Car();
 console.log(automobile);
 automobile.someMethod();
 console.log(automobile);
+*/
 
-console.log(automobile);
+/*
+    Exercise - User class
+*/
+
+class User {
+    #login;
+    #password;
+
+    constructor(login, password) {
+        this.#login = login;
+        // NOT = this.#setPassword(password);
+        this.#accessPassword = password;
+    }
+
+    get accessLogin() {
+        return this.#login;
+    }
+
+    set #accessPassword(value) {
+        this.#password = this.#stringReverse(value);
+    }
+
+    get #accessPassword() {
+        return this.#stringReverse(this.#password);
+    }
+
+    #stringReverse(value) {
+        return value.split('').reverse().join('');
+    }
+
+    checkPassword(password) {
+        const check = this.#accessPassword === password; // get
+        console.log('🟡 Password checked: ', check);
+        return check;
+    }
+
+    changePassword(oldPasswd, newPasswd) {
+        if (this.checkPassword(oldPasswd)) {
+            this.#accessPassword = newPasswd; // get
+            console.log('🟢 Password changed');
+            return true;
+        }
+        return false;
+    }
+}
+
+const userAdmin = new User('admin', 'password123');
+console.log(userAdmin.accessLogin);
+console.log(userAdmin);
+userAdmin.checkPassword('password123');
+userAdmin.changePassword('password123', 'Pass_Word321')
+console.log(userAdmin);
+
 
