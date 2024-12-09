@@ -323,7 +323,6 @@ console.log(automobile);
 
 /*
     Exercise - User class
-*/
 
 class User {
     #login;
@@ -373,5 +372,4 @@ console.log(userAdmin);
 userAdmin.checkPassword('password123');
 userAdmin.changePassword('password123', 'Pass_Word321')
 console.log(userAdmin);
-
-
+*/
