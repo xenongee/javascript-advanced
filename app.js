@@ -170,7 +170,6 @@ console.log(myCart);
 
 /*
     Classes
-*/
 
 class JournalClass {
     // this code always works in strict mode
@@ -194,3 +193,59 @@ machineElementsJournalClass.read();
 console.log(machineElementsJournalClass.title, machineElementsJournalClass);
 console.log(machineElementsJournalClass.__proto__);
 console.log(machineElementsJournalClass instanceof JournalClass);
+*/
+
+/*
+    Setters and Getters
+*/
+
+const task = {
+    title: 'someTask',
+    completionTime: new Date("01.01.2024"),
+
+    // isOvertimed() {
+    get isOvertimed() {
+        return new Date() > this.completionTime;
+    },
+
+    set isOvertimed(value) {
+        if (!value) {
+            this.completionTime = new Date();
+        }
+    }
+}
+
+// console.log(task.isOvertimed());
+// console.log(task, task.isOvertimed);
+// task.isOvertimed = false
+// console.log(task, task.isOvertimed);
+
+class TaskClass {
+    constructor(title, date) {
+        this.title = title;
+        this.setDate = date;
+    }
+
+    get isOverdated() {
+        if (this._setDate) {
+            return `_Overdated: ${new Date() > this._setDate}`;
+        }
+        return `Overdated: ${new Date() > this.setDate}`;
+    }
+
+    set setDate(date) {
+        if(new Date() > date) {
+            console.log('🔴 date is over');
+            return;
+        }
+        this._setDate = date;
+    }
+}
+
+const newTask = new TaskClass('anyTask', new Date("2024.12.10"));
+console.log(newTask, newTask.isOverdated);
+newTask.setDate = new Date("2024.12.05");
+console.log(newTask, newTask.isOverdated);
+newTask.setDate = new Date("2024.12.15");
+console.log(newTask, newTask.isOverdated);
+
