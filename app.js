@@ -251,7 +251,6 @@ console.log(newTask, newTask.isOverdated);
 
 /*
     Static
-*/
 
 // Number.MAX_SAFE_INTEGER; // Static property of Number class
 // new Number(); // Instance of Number class
@@ -291,3 +290,36 @@ console.log(SomeClass.var1);
 // }
 
 // someObj.helloWorld();
+*/
+
+/*
+    Private methods and properties
+*/
+
+class Car {
+    #vin = '12345432109876';
+
+    #changeVin(vin) {
+        this.#vin = vin;
+        console.log("🟢 vin changed");
+    }
+
+    someMethod() {
+        this.#changeVin('67890123454321');
+    }
+
+    static #fuelTypes = ['petrol', 'diesel'];
+    static {
+        this.#fuelTypes = ['petrol', 'diesel', 'electric', 'hybrid'];
+        console.log(this.#fuelTypes);
+    }
+}
+
+const automobile = new Car();
+// automobile.#vin = '12345678901234567'; // error
+console.log(automobile);
+automobile.someMethod();
+console.log(automobile);
+
+console.log(automobile);
+
