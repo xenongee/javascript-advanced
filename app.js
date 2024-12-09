@@ -197,7 +197,6 @@ console.log(machineElementsJournalClass instanceof JournalClass);
 
 /*
     Setters and Getters
-*/
 
 const task = {
     title: 'someTask',
@@ -248,4 +247,47 @@ newTask.setDate = new Date("2024.12.05");
 console.log(newTask, newTask.isOverdated);
 newTask.setDate = new Date("2024.12.15");
 console.log(newTask, newTask.isOverdated);
+*/
 
+/*
+    Static
+*/
+
+// Number.MAX_SAFE_INTEGER; // Static property of Number class
+// new Number(); // Instance of Number class
+
+// Array.from([1,2,3]); // Static method of Array class
+// new Array(); // Instance of Array class
+
+// biome-ignore lint/complexity/noStaticOnlyClass: <explanation>
+class SomeClass {
+    // helloWorld() {
+    //     console.log('Hello World!');
+    // }
+
+    static helloWorld() {
+        console.log('Hello World!');
+    }
+
+    static var1 = 5;
+
+    static {
+        let var2 = 10;
+        this.var1 *= var2;
+    }
+}
+
+// const someInstance = new SomeClass();
+// someInstance.helloWorld();
+
+SomeClass.helloWorld();
+console.log(SomeClass.var1);
+
+// how it works:
+// const someObj = function() { ... };
+
+// someObj.helloWorld = function() {
+//     console.log('Hello World!!!');
+// }
+
+// someObj.helloWorld();
