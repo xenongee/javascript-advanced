@@ -373,3 +373,29 @@ userAdmin.checkPassword('password123');
 userAdmin.changePassword('password123', 'Pass_Word321')
 console.log(userAdmin);
 */
+
+/*
+    Object.create
+*/
+
+const User = {
+    init(name, phone) {
+        this.name = name;
+        this.phone = phone;
+    },
+    log() {
+        console.log("🟢 User logged in");
+    }
+}
+
+const user1 = Object.create(User);
+
+user1.log()
+// user1.name = 'John';
+// user1.phone = '123456789';
+user1.init('John', '123456789');
+console.log(user1);
+console.log(user1.__proto__ == User);
+
+const user2 = Object.create(user1);
+console.log(user2); // prototype chain: Prototype -> User(init() log()) -> user1(.name .phone) -> this
