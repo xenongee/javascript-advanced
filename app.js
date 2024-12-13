@@ -95,7 +95,6 @@ console.log(someAudioBook instanceof Book);
 
 /*
     Inheritance ES6
-*/
 
 class Book {
     constructor(title, author) {
@@ -130,3 +129,37 @@ console.log(someAudioBookClass.bookLength());
 
 console.log(someAudioBookClass instanceof AudioBook);
 console.log(someAudioBookClass instanceof Book);
+*/
+
+/*
+    Method overriding
+*/
+
+class Book {
+    constructor(title, author) {
+        this.title = title;
+        this.author = author;
+    }
+
+    info() {
+        return `Book ${this.title} by ${this.author}`;
+    }
+}
+
+const bookOne = new Book("Book One", "Author One");
+
+class eBook extends Book {
+    constructor(title, author, fileFormat) {
+        super(title, author);
+        this.fileFormat = fileFormat;
+    }
+
+    info() {
+        return `eBook ${this.title} by ${this.author} on ${this.fileFormat}`;
+    }
+}
+
+const bookTwo = new eBook("Book Two", "Author Two", "djvu");
+
+console.log(bookOne.info());
+console.log(bookTwo.info());
