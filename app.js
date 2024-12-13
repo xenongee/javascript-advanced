@@ -54,7 +54,6 @@ console.log(someFilm.ratings);
 
 /*
     Old way inheritance
-*/
 
 const Book = function (title, author) {
     this.title = title;
@@ -92,3 +91,42 @@ console.log(someAudioBook.bookLength());
 
 console.log(someAudioBook instanceof AudioBook);
 console.log(someAudioBook instanceof Book);
+*/
+
+/*
+    Inheritance ES6
+*/
+
+class Book {
+    constructor(title, author) {
+        this.title = title;
+        this.author = author;
+    }
+
+    buy() {
+        return `You bought ${this.title}`;
+    }
+}
+
+class AudioBook extends Book {
+    constructor(title, author, length) {
+        super(title, author); // we need to call super() to call constructor of parent class -> Book
+        this.length = length;
+    }
+
+    bookLength() {
+        return `Audio book length is ${this.length} minutes`;
+    }
+}
+
+const someBookClass = new Book("Some Book", "Some Author");
+console.log(someBookClass);
+console.log(someBookClass.buy());
+
+const someAudioBookClass = new AudioBook("Some Audio Book", "Some Author", 120);
+console.log(someAudioBookClass);
+console.log(someAudioBookClass.buy());
+console.log(someAudioBookClass.bookLength());
+
+console.log(someAudioBookClass instanceof AudioBook);
+console.log(someAudioBookClass instanceof Book);
