@@ -133,7 +133,6 @@ console.log(someAudioBookClass instanceof Book);
 
 /*
     Method overriding
-*/
 
 class Book {
     constructor(title, author) {
@@ -163,3 +162,94 @@ const bookTwo = new eBook("Book Two", "Author Two", "djvu");
 
 console.log(bookOne.info());
 console.log(bookTwo.info());
+*/
+
+/*
+    Exercise - Game
+    Enemy class
+        health - property, private
+        getDamage - method
+    SuperEnemy class extends Enemy class
+        getDamage - overrideded method, take damage 50% of the time
+    Weaapon class
+        damagePower - property
+        attack - method
+*/
+
+class Enemy {
+    #health;
+
+    constructor(name, health) {
+        this.name = name;
+        this.#health = health;
+    }
+
+    checkHealth() {
+        if (this.#health <= 0) {
+            console.log(`💀 ${this.name} is dead!`);
+            return true;
+        }
+        return false;
+    }
+
+    getDamage(damagePower) {
+        this.#health -= damagePower;
+        this.checkHealth();
+    }
+
+    get health() {
+        if (this.#health < 0) {
+            return 0;
+        }
+        return this.#health;
+    }
+}
+
+class SuperEnemy extends Enemy {
+    constructor(name, health) {
+        super(name, health);
+    }
+
+    getDamage(damagePower) {
+        if (Math.random() < 0.5) {
+            super.getDamage(damagePower);
+        } else {
+            console.log("❌ Missed!");
+        }
+        this.checkHealth();
+    }
+}
+
+class Weapon {
+    constructor(damagePower) {
+        this.damagePower = damagePower;
+    }
+    attack(enemy) {
+        if (enemy.checkHealth()) return;
+        console.log(`🔫 Attack: ${this.damagePower} damage to ${enemy.name}`);
+        enemy.getDamage(this.damagePower);
+    }
+}
+
+const boo = new Enemy("👻 Boo", 100);
+const boss = new SuperEnemy("😈 Boss", 50);
+const gun = new Weapon(15);
+
+console.log(`⚠️ Status: ${boo.name} - ${boo.health} hp`);
+console.log(`⚠️ Status: ${boss.name} - ${boss.health} hp`);
+
+gun.attack(boo);
+gun.attack(boo);
+gun.attack(boo);
+gun.attack(boo);
+gun.attack(boo);
+gun.attack(boo);
+gun.attack(boo); // dead
+
+gun.attack(boss);
+gun.attack(boss);
+gun.attack(boss);
+gun.attack(boss);
+
+console.log(`⚠️ Status: ${boo.name} - ${boo.health} hp`);
+console.log(`⚠️ Status: ${boss.name} - ${boss.health} hp`);
