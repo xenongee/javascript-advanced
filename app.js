@@ -9,7 +9,6 @@
 
     Properties are private, access to them only through methods - getters and setters
     Свойства приватные, доступ к ним только через методы - геттеры и сеттеры
-*/
 
 class Film {
     #title;
@@ -50,3 +49,46 @@ console.log(someFilm.director);
 console.log(someFilm.ratings);
 someFilm.ratings = 5
 console.log(someFilm.ratings);
+
+*/
+
+/*
+    Old way inheritance
+*/
+
+const Book = function (title, author) {
+    this.title = title;
+    this.author = author;
+}
+
+Book.prototype.buy = function () {
+    return `You bought ${this.title}`;
+}
+
+const AudioBook = function (title, author, length) {
+    // this.title = title;
+    // this.author = author;
+    Book.call(this, title, author);
+    this.length = length;
+}
+
+AudioBook.prototype = Object.create(Book.prototype);
+// +
+AudioBook.prototype.constructor = AudioBook;
+
+AudioBook.prototype.bookLength = function () {
+    return `Audio book length is ${this.length} minutes`;
+}
+
+const someBook = new Book("Some Book", "Some Author");
+console.log(someBook);
+console.log(someBook.buy());
+
+const someAudioBook = new AudioBook("Some Audio Book", "Some Author", 120);
+console.log(someAudioBook);
+console.log(someAudioBook.buy()); // if we want to use the 'buy' method for AudioBook, we need to link the prototypes through Object.create
+console.log(AudioBook.prototype.constructor); // remember, we need to link constructor to the prototype
+console.log(someAudioBook.bookLength());
+
+console.log(someAudioBook instanceof AudioBook);
+console.log(someAudioBook instanceof Book);
